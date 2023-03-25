@@ -44,7 +44,7 @@ Requisitos:
 2.Abrir un administrador de bases de datos (Yo utilice HeidySql)
     y ejecutar la consulta Sql que se encuentra en el archivo dbSql.txt para crear la base de datos con sus tablas
     - En el archivo configDatabase.js se encuentran las configuraciones de acceso a la base de datos,
-        la ruta del archivo es : src\database\configDatabase.js
+        la ruta del archivo es : configDatabase.js
 3.luego en el proyecto desarrollado en node js, se ubica en la carpeta raiz (test_digitaxi)
     y por consola ejecutar:
   ```bash
