@@ -1,0 +1,494 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de conductores",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor local"
+      }
+    ],
+    "paths": {
+      "/api/conductores": {
+        "get": {
+          "summary": "Obtiene todos los conductores",
+          "responses": {
+            "200": {
+              "description": "Conductores obtenidos exitosamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Conductor"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error interno del servidor"
+            }
+          }
+        },
+        "post": {
+          "summary": "Crear un nuevo conductor",
+          "description": "Crear un nuevo conductor",
+          "parameters": [
+            {
+              "name": "Conductor",
+              "in": "body",
+              "description": "Datos del conductor a crear",
+              "schema": {
+                "$ref": "#/components/schemas/Conductor"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "El conductor ha sido creado con éxito",
+              "schema": {
+                "$ref": "#/components/schemas/Conductor"
+              }
+            }
+          }
+        }
+      },
+      "/api/conductores/{id}": {
+        "get": {
+          "summary": "Obtiene un conductor por su ID",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "description": "ID del conductor",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Conductor obtenido exitosamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Conductor"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Conductor no encontrado"
+            },
+            "500": {
+              "description": "Error interno del servidor"
+            }
+          }
+        },
+        "put": {
+            "summary": "Actualizar un conductor",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "Id del conductor",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Conductor"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Conductor actualizado",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Conductor"
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Conductor no encontrado"
+              },
+              "500": {
+                "description": "Error interno del servidor"
+              }
+            }
+          },
+          "delete": {
+            "summary": "Eliminar  un conductor",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "Id del conductor",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "requestBody": {
+              "required": false,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Conductor"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Conductor eliminado",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Conductor"
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Conductor no encontrado"
+              },
+              "500": {
+                "description": "Error interno del servidor"
+              }
+            }
+      }
+    },
+    "/api/usuarios": {
+      "get": {
+        "summary": "Obtiene todos los usuarios",
+        "responses": {
+          "200": {
+            "description": "usuarios obtenidos exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Usuario"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear un nuevo usuario",
+        "description": "Crear un nuevo usuario",
+        "parameters": [
+          {
+            "name": "usuario",
+            "in": "body",
+            "description": "Datos del usuario a crear",
+            "schema": {
+              "$ref": "#/components/schemas/Usuario"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "El usuario ha sido creado con éxito",
+            "schema": {
+              "$ref": "#/components/schemas/Usuario"
+            }
+          },
+          "500" :{
+            "description" : "Error al crear el usuario"
+          }
+        }
+      }
+    },
+    "/api/usuarios/{id}": {
+      "put": {
+        "summary": "Actualizar un usuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del usuario",
+            "schema": {
+              "type": "string",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "usuario actualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "usuario no encontrado"
+          },
+          "500": {
+            "description": "Error interno del servidor"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar  un Usuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del Usuario",
+            "schema": {
+              "type": "string",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuario eliminado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuario no encontrado"
+          },
+          "500": {
+            "description": "Error interno del servidor"
+          }
+        }
+  }
+    },
+    "/api/viajes" : {
+      "get": {
+        "summary": "Obtiene todos los Viajes completados",
+        "responses": {
+          "200": {
+            "description": "Viajes completados obtenidos exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Viaje"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear una nueva solicitud de viaje",
+        "description": "Crear una nueva solicitud de viaje",
+        "parameters": [
+          {
+            "name": "viaje",
+            "in": "body",
+            "description": "Datos de la solicitud",
+            "schema": {
+              "$ref": "#/components/schemas/Viaje"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La solicitud ha sido creada con éxito",
+            "schema": {
+              "$ref": "#/components/schemas/Viaje"
+            }
+          },
+          "500" :{
+            "description" : "Error al crear la solicitud"
+          }
+        }
+      }
+    },
+    "/api/viajes/{id}" : {
+      "put": {
+        "summary": "Completar una Solicitud de viaje",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del usuario",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Viaje"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Solicitud Completada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Viaje"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Solicitud no encontrada"
+          },
+          "500": {
+            "description": "Error interno del servidor"
+          }
+        }
+      }
+    }
+  },
+    "components": {
+      "schemas": {
+        "Conductor": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "nombre": {
+              "type": "string"
+            },
+            "dni": {
+              "type": "string"
+            },
+            "estado": {
+              "type": "string"
+            },
+            "latitud": {
+              "type": "number",
+              "format": "float"
+            },
+            "longitud": {
+              "type": "number",
+              "format": "float"
+            }
+          }
+        },
+        "Usuario": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "nombre": {
+              "type": "string"
+            },
+            "dni": {
+              "type": "string"
+            }
+          }
+        },
+        "Viaje": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inicio_latitud": {
+              "type": "number",
+              "format": "float"
+            },
+            "inicio_longitud": {
+              "type": "number",
+              "format": "float"
+            },
+            "destino_latitud": {
+              "type": "number",
+              "format": "float"
+            },
+            "destino_longitud": {
+              "type": "number",
+              "format": "float"
+            },
+            "pasajero_id": {
+              "type": "string"
+            },
+            "conductor_id": {
+              "type": "string"
+            },
+            "fecha_creacion": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "fecha_completado": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "costo": {
+              "type": "number",
+              "format": "float"
+            }
+          }
+        }
+        
+      }
+    }
+  }
+
+  
