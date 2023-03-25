@@ -1,0 +1,80 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versión del servidor:         10.4.27-MariaDB - mariadb.org binary distribution
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             12.4.0.6659
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- Volcando estructura de base de datos para digitaxi
+CREATE DATABASE IF NOT EXISTS `digitaxi` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
+USE `digitaxi`;
+
+-- Volcando estructura para tabla digitaxi.conductores
+CREATE TABLE IF NOT EXISTS `conductores` (
+  `id` varchar(80) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `dni` varchar(50) NOT NULL,
+  `estado` varchar(50) NOT NULL,
+  `latitud` decimal(10,8) DEFAULT NULL,
+  `longitud` decimal(10,8) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Volcando datos para la tabla digitaxi.conductores: ~6 rows (aproximadamente)
+DELETE FROM `conductores`;
+INSERT INTO `conductores` (`id`, `nombre`, `dni`, `estado`, `latitud`, `longitud`) VALUES
+	('123w', '12dd', '3213', 'disponible', NULL, NULL),
+	('da2c9df0-472b-475a-96a3-0a343c891831', 'Mauro', 'qwerty', 'ocupado', NULL, NULL),
+	('3da96663-1ce1-450b-832a-85e8cc72c44e', 'Mauro', 'qwerty', 'disponible', NULL, NULL),
+	('e83868a0-2afb-4905-9adb-1a3cbe043e98', 'Mauro', 'qwerty', 'ocupado', NULL, NULL),
+	('c5d833f0-54da-4f2d-a13b-8523d3b034cd', 'Luis', 'qwerty', 'disponible', NULL, NULL),
+	('fd902389-6f7a-48f3-87a9-08b9b852bd55', 'Mau', '1234r', 'disponible', 0.00000000, 0.00000000);
+
+-- Volcando estructura para tabla digitaxi.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` varchar(80) DEFAULT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `dni` varchar(50) DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Volcando datos para la tabla digitaxi.usuarios: ~1 rows (aproximadamente)
+DELETE FROM `usuarios`;
+INSERT INTO `usuarios` (`id`, `nombre`, `dni`) VALUES
+	('1q', 'qw', '123');
+
+-- Volcando estructura para tabla digitaxi.viajes
+CREATE TABLE IF NOT EXISTS `viajes` (
+  `id` varchar(80) NOT NULL DEFAULT 'AUTO_INCREMENT',
+  `inicio_latitud` float NOT NULL,
+  `inicio_longitud` float NOT NULL,
+  `destino_latitud` float NOT NULL,
+  `destino_longitud` float NOT NULL,
+  `pasajero_id` varchar(80) DEFAULT NULL,
+  `conductor_id` varchar(80) DEFAULT NULL,
+  `fecha_creacion` timestamp NULL DEFAULT NULL,
+  `fecha_completado` timestamp NULL DEFAULT NULL,
+  `costo` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Volcando datos para la tabla digitaxi.viajes: ~2 rows (aproximadamente)
+DELETE FROM `viajes`;
+INSERT INTO `viajes` (`id`, `inicio_latitud`, `inicio_longitud`, `destino_latitud`, `destino_longitud`, `pasajero_id`, `conductor_id`, `fecha_creacion`, `fecha_completado`, `costo`) VALUES
+	('1', 2, 6, 5, 4, '3', NULL, '2023-03-23 16:33:04', NULL, NULL),
+	('498b31c8-f525-446d-8853-34b1c03b10aa', 12, 13, 12, 13, '1q', NULL, '2023-03-23 16:35:27', NULL, NULL);
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
