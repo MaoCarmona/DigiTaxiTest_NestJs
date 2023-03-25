@@ -26,15 +26,28 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Instalacion
 
 ```bash
 $ npm install
 ```
 
 ## Running the app
+Para correr la en local , se deben seguir los siguientes pasos :
+Requisitos:
+    - XAMPP
+    - HeidiSQL o un administrador de bases de datos cualquiera
+    - Node js - npm
 
-```bash
+
+1.Iniciar un servidor en local (Yo utilice XAMPP para correr Apache y Mysql) 
+2.Abrir un administrador de bases de datos (Yo utilice HeidySql)
+    y ejecutar la consulta Sql que se encuentra en el archivo dbSql.txt para crear la base de datos con sus tablas
+    - En el archivo configDatabase.js se encuentran las configuraciones de acceso a la base de datos,
+        la ruta del archivo es : src\database\configDatabase.js
+3.luego en el proyecto desarrollado en node js, se ubica en la carpeta raiz (test_digitaxi)
+    y por consola ejecutar:
+  ```bash
 # development
 $ npm run start
 
@@ -43,31 +56,14 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+depediendo de cada caso
+
+Nota: Para verificar cada uno de los endpoints desarrollados, se ha creado un swagger
+al cual puede acceder copiando el siguiente enlace : http://localhost:3000/docs/  despues de ejecutar los pasos anteriores
+
 ```
 
-## Test
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
